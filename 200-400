@@ -1,0 +1,26 @@
+import pyautogui
+import time
+import random
+
+pyautogui.FAILSAFE = False
+
+keys = ['shift', 'ctrl', 'alt', 'space', 'tab', 'enter', 'esc']
+
+start = time.time()
+
+while time.time() - start < 300:   # 5 minutes
+    # random mouse move
+    x = random.randint(0, 1920)
+    y = random.randint(0, 1080)
+    pyautogui.moveTo(x, y, duration=random.uniform(0.1, 0.6))
+
+    # jitter
+    pyautogui.moveRel(random.randint(-30,30), random.randint(-30,30), duration=random.uniform(0.05, 0.3))
+
+    # random burst of keys
+    for _ in range(random.randint(2, 6)):
+        pyautogui.press(random.choice(keys))
+        time.sleep(random.uniform(0.05, 0.2))
+
+    # short random pause
+    time.sleep(random.uniform(0.5, 2))
